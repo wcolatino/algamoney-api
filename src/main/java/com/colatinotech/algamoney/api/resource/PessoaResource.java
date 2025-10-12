@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.colatinotech.algamoney.api.event.RecursoCriadoEvent;
@@ -77,6 +78,12 @@ public class PessoaResource {
 	public ResponseEntity<Pessoa> atualizar (@Valid @PathVariable Long codigo, @RequestBody Pessoa pessoa){
 		Pessoa pessoaSalva = service.atualizar(pessoa, codigo);
 		return ResponseEntity.ok(pessoaSalva);
+	}
+	
+	@PutMapping("/{codigo}/ativo")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void atualizarPropriedadeAtivo(@PathVariable Long codigo, @RequestBody Boolean ativo) { //Requestbody é obrigatório, se não passar o default é true;
+		service.atualizarPropriedadeAtivo(codigo, ativo);		
 	}
 	
 	
