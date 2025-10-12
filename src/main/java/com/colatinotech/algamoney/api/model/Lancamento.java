@@ -22,7 +22,7 @@ public class Lancamento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //AUto INcremento
 	private Long codigo;
-	private String descricao;
+	private String descricao; 
 	
 	@Column(name = "data_vencimento")	
 	private LocalDate dataVencimento;
@@ -35,6 +35,7 @@ public class Lancamento {
 	private String observacao;
 	
 	@Enumerated(EnumType.STRING) //Salvará String no banco
+	@Column(name = "tipo_lancamento")
 	private TipoLancamento tipoLancamento;
 	
 	@ManyToOne
